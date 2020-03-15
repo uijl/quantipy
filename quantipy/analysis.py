@@ -224,7 +224,7 @@ class DataPreparation:
         ), "Something went wrong, the keys of the given dictionaries are not the same"
 
         for key in effects:
-            effects[key].update(effect[key])
+            effects[key].extend(effect[key])
 
         return effects
 

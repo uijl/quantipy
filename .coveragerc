@@ -1,0 +1,5 @@
+[run]
+source = quantipy
+
+[report]
+omit = test*, .eggs*, openclsim/plot.py
