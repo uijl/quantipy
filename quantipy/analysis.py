@@ -93,11 +93,11 @@ class DataPreparation:
         by linearly interpolating between the surrounding datapoints.
         """
 
-        closes = dataframe["Adj Close"].values[1::]
+        closes = dataframe["Adj Close"].values
         changes = [0]
 
-        for ix, old in enumerate(closes):
-            new = closes[ix]
+        for ix, new in enumerate(closes[1::]):
+            old = closes[ix]
             changes.append((new - old) / old * 100)
 
         dataframe["Change"] = changes
@@ -268,7 +268,7 @@ class DataPreparation:
             effect = self.determine_effect(dataframes[index], changes[index], index)
             effects = self.update_effects(effects, effect)
 
-        return pd.DataFrame.from_dict(effect)
+        return pd.DataFrame.from_dict(effects)
 
     def prepare(self, percentile: float, index: str = "All") -> pd.DataFrame:
         """Prepare the data.
